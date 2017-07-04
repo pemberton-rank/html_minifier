@@ -33,7 +33,7 @@ module HtmlMinifier
       if @options.nil? then
         js << "var min = require('html-minifier').minify(#{MultiJson.dump(source)});"
       else
-        js << "var min = require('html-minifier').minify(#{MultiJson.dump(source)}, #{MultiJson.dump(@options)});"
+        js << "var min = require('html-minifier').minify(#{MultiJson.dump(source)}, #{MultiJson.dump(@options).gsub(/\"\//, '/').gsub(/\/\"/, '/')});"
       end
       js << "return {min:min};"
 
